@@ -105,6 +105,6 @@ You can add these secrets in your repository settings under:
 **Settings → Secrets and variables → Actions → New repository secret**
 
 
-### License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
