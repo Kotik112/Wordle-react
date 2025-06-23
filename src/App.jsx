@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import './components/line.css';
 import Line from "./components/Line.jsx";
-import { fetchWord } from './utils.js';
+import { fetchWord, renderTitle } from './utils.jsx';
+import {MAX_GUESSES, TRY_AGAIN_MESSAGE, colors, TITLE, Key} from './constants.js';
 import Popup from "./components/Popup.jsx";
 
 function App() {
@@ -12,7 +13,6 @@ function App() {
         : import.meta.env.VITE_API_URL;
 
     const [solution, setSolution] = useState('');
-    const MAX_GUESSES = 6;
     const [guesses, setGuesses] = useState(Array(MAX_GUESSES).fill(null));
     const [currentGuess, setCurrentGuess] = useState('');
     const [isGameOver, setIsGameOver] = useState(false);
@@ -78,11 +78,15 @@ function App() {
         }
 
         const handleType = (event) => {
-            if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'Escape') {
+            if (event.key === Key.ESCAPE || event.key === Key.DELETE || event.key === Key.SHIFT
+                || event.key === Key.CONTROL || event.key === Key.ALT) {
+                return; // Ignore these keys
+            }
+            if (event.key === Key.BACKSPACE) {
                 setCurrentGuess(oldGuess => oldGuess.slice(0, -1));
                 return;
             }
-            if (event.key === 'Enter') {
+            if (event.key === Key.ENTER) {
                 if (currentGuess.length === 5) {
                     if (!allWords.includes(currentGuess)) {
                         setCurrentGuess('');
@@ -131,20 +135,10 @@ function App() {
         return () => window.removeEventListener('keydown', handleType);
     }, [currentGuess, solution, isGameOver, allWords]);
 
-    const title = 'Wordle';
-    const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
-    //const colors2 = ["lightgray", "lightgray", "lightgray", "green", "lightgray", "lightgray"]
-
     return (
         <div className="game">
             <h1 className="game-title">
-                {title.split("").map((char, i) => (
-                    <span key={i} style={{
-                        color: colors[i],
-                        display: "inline-block",
-                        transform: (i === 0) ? "rotate(-10deg)" : (i === 2) ? "rotate(10deg)" : (i === 4) ? "rotate(-10deg)" : "rotate(0deg)"
-                    }}>{char}</span>
-                ))}
+                {renderTitle(TITLE, colors)}
             </h1>
             { popupMessage &&
                 <Popup message={popupMessage}

@@ -12,3 +12,14 @@ export const fetchWord = async (apiUrl, setSolution) => {
     const randomWord = data[Math.floor(Math.random() * data.length)];
     setSolution(randomWord);
 };
+
+
+export const renderTitle = (text, colors) => {
+    return text.split("").map((char, i) => (
+        <span key={i} style={{
+            color: colors[i],
+            display: "inline-block",
+            transform: (i === 0) ? "rotate(-10deg)" : (i === 2) ? "rotate(10deg)" : (i === 4) ? "rotate(-10deg)" : "rotate(0deg)"
+        }}>{char}</span>
+    ));
+};
