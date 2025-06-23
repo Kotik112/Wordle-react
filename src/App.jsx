@@ -5,7 +5,11 @@ import { fetchWord } from './utils.js';
 import Popup from "./components/Popup.jsx";
 
 function App() {
-    const API_URL = import.meta.env.VITE_API_URL
+    const isLocalhost = window.location.hostname === 'localhost';
+
+    const API_URL = isLocalhost
+        ? '/api/fe/wordle-words'
+        : import.meta.env.VITE_API_URL;
 
     const [solution, setSolution] = useState('');
     const MAX_GUESSES = 6;

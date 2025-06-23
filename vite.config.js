@@ -9,7 +9,7 @@ export default defineConfig({
       '/api': {
         target: 'https://api.frontendexpert.io',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+        rewrite: path => path.replace(/^\/api/, '/api')
       }
     }
   }
