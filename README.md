@@ -107,4 +107,4 @@ You can add these secrets in your repository settings under:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](https://mit-license.org/).
