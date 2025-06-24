@@ -29,7 +29,8 @@ export const renderTitle = (text, colors) => {
 export const handleKey = (event, state) => {
     const {
         currentGuess, setCurrentGuess, setPopupMessage,
-        allWords, setGuesses, solution, setIsGameOver
+        allWords, setGuesses, solution, setIsGameOver, keyStatuses,
+        setKeyStatuses
     } = state;
     // Ignore these keys
     if ([Key.ESCAPE, Key.ALT, Key.SHIFT, Key.CONTROL, Key.CAPS_LOCK, Key.DELETE].includes(event.key)) return;
@@ -40,6 +41,24 @@ export const handleKey = (event, state) => {
     }
     if (event.key === Key.ENTER) {
         if (currentGuess.length === 5) {
+            const newStatuses = { ...keyStatuses };
+            currentGuess.split('').forEach((char, i) => {
+                const upperChar = char.toUpperCase();
+                if (solution[i] === upperChar) {
+                    newStatuses[upperChar] = "correct";
+                } else if (solution.includes(upperChar)) {
+                    if (newStatuses[upperChar] !== "correct") {
+                        newStatuses[upperChar] = "close";
+                    }
+                } else {
+                    if (!newStatuses[upperChar]) {
+                        newStatuses[upperChar] = "wrong";
+                    }
+                }
+            });
+
+            setKeyStatuses(newStatuses);
+
             if (!allWords.includes(currentGuess)) {
                 setCurrentGuess('');
                 setPopupMessage(TRY_AGAIN_MESSAGE);

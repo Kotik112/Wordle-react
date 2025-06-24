@@ -20,6 +20,7 @@ function App() {
     const [isGameOver, setIsGameOver] = useState(false);
     const [popupMessage, setPopupMessage] = useState(null);
     const [allWords, setAllWords] = useState([]);
+    const [keyStatuses, setKeyStatuses] = useState({});
 
     /**
      *
@@ -84,7 +85,7 @@ function App() {
 
         const handler = (event) => handleKey(event, {
             currentGuess, setCurrentGuess, setPopupMessage, allWords,
-            setGuesses, solution, setIsGameOver
+            setGuesses, solution, setIsGameOver, keyStatuses, setKeyStatuses
         });
 
         window.addEventListener('keydown', handler);
@@ -119,7 +120,7 @@ function App() {
                     );
                 })
             }
-            <Keyboard onKeyPress={handleVirtualKeyPress}/>
+            <Keyboard onKeyPress={handleVirtualKeyPress} keyStatuses={keyStatuses}/>
         </div>
     );
 }

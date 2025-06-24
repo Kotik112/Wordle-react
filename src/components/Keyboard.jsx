@@ -1,6 +1,6 @@
 import '../styles/keyboard.css'
 
-export default function Keyboard({ onKeyPress }) {
+export default function Keyboard({ onKeyPress, keyStatuses }) {
     const KEYBOARD_ROWS = [
         ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -9,16 +9,22 @@ export default function Keyboard({ onKeyPress }) {
 
     return (
         <div className="keyboard">
-            {KEYBOARD_ROWS.map((row, index) => (
-                <div className="keyboard-row" key={index}>
-                    {row.map((key, index) => (
-                        <button
-                        key={index}
-                        className="keyboard-key"
-                        onClick={() => onKeyPress(key)}>
-                            {key}
-                        </button>
-                    ))}
+            {KEYBOARD_ROWS.map((row, rowIndex) => (
+                <div className="keyboard-row" key={rowIndex}>
+                    {row.map((key, keyIndex) => {
+                        // Get status from keyStatuses map (e.g., correct/close/wrong)
+                        const status = keyStatuses?.[key.toUpperCase()] || '';
+
+                        return (
+                            <button
+                                key={keyIndex}
+                                className={`keyboard-key ${status}`}
+                                onClick={() => onKeyPress(key)}
+                            >
+                                {key}
+                            </button>
+                        );
+                    })}
                 </div>
             ))}
         </div>

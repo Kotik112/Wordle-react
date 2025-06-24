@@ -1,5 +1,5 @@
 export const MAX_GUESSES = 6;
-export const TRY_AGAIN_MESSAGE = "Invalid word. Please try again.";
+export const TRY_AGAIN_MESSAGE = "Invalid word. Press Enter to continue.";
 export const colors = ["red", "orange", "yellow", "green", "blue", "indigo"];
 export const TITLE = 'Wordle';
 
