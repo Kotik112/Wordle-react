@@ -78,9 +78,10 @@ function App() {
         }
 
         const handleType = (event) => {
+            // Ignore these keys
             if (event.key === Key.ESCAPE || event.key === Key.DELETE || event.key === Key.SHIFT
                 || event.key === Key.CONTROL || event.key === Key.ALT) {
-                return; // Ignore these keys
+                return;
             }
             if (event.key === Key.BACKSPACE) {
                 setCurrentGuess(oldGuess => oldGuess.slice(0, -1));

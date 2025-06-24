@@ -5,7 +5,7 @@ export const TITLE = 'Wordle';
 
 export const Key = Object.freeze({
     ENTER: 'Enter',
-    DELETE: 'Backspace',
+    DELETE: 'Delete',
     ESCAPE: 'Escape',
     BACKSPACE: 'Backspace',
     ALT: 'Alt',
