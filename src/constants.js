@@ -11,4 +11,5 @@ export const Key = Object.freeze({
     ALT: 'Alt',
     SHIFT: 'Shift',
     CONTROL: 'Control',
+    CAPS_LOCK: 'CapsLock',
 });
