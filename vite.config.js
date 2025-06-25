@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { configDefaults } from 'vitest/config'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
@@ -9,8 +9,16 @@ export default defineConfig({
       '/api': {
         target: 'https://api.frontendexpert.io',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '/api')
-      }
-    }
-  }
+        rewrite: path => path.replace(/^\/api/, '/api'),
+      },
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    exclude: [...configDefaults.exclude, 'e2e/**'],
+    setupFiles: ['./vitest.setup.js'], // Optional: for global setup
+  },
 })
+
+

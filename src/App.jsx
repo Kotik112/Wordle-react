@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import './styles/game.css';
 import Line from "./components/Line.jsx";
-import { fetchWord, renderTitle, handleKey } from './utils.jsx';
-import {MAX_GUESSES, TRY_AGAIN_MESSAGE, colors, TITLE, Key} from './constants.js';
+import { fetchWord, renderTitle, handleKey } from './utils/utils.jsx';
+import {MAX_GUESSES, TRY_AGAIN_MESSAGE, colors, TITLE, Key} from './utils/constants.js';
 import Popup from "./components/Popup.jsx";
 import Keyboard from "./components/Keyboard.jsx";
+import words from './assets/5-letter-words.json';
 
 function App() {
     // Derived variables
-    const isLocalhost = window.location.hostname === 'localhost';
-    const API_URL = isLocalhost
+    const API_URL = window.location.hostname === 'localhost'
         ? '/api/fe/wordle-words'
         : import.meta.env.VITE_API_URL;
 
@@ -56,15 +56,11 @@ function App() {
     }, []);
 
     useEffect(() => {
-        const fetchWord = async () => {
-            const response = await fetch('/5-letter-words.json');
-            const data = await response.json();
-            setAllWords(data);
-            const randomWord = data[Math.floor(Math.random() * data.length)];
-            setSolution(randomWord);
+        const getAllWords = () => {
+            setAllWords(words);
         };
 
-        fetchWord();
+        getAllWords();
     }, []);
 
     useEffect(() => {
@@ -91,7 +87,7 @@ function App() {
         window.addEventListener('keydown', handler);
 
         return () => window.removeEventListener('keydown', handler);
-    }, [currentGuess, solution, isGameOver, allWords]);
+    }, [currentGuess, solution, isGameOver, allWords, keyStatuses]);
 
     return (
         <div className="game">
