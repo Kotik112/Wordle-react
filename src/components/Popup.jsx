@@ -1,3 +1,5 @@
+import '../styles/popup.css';
+
 export default function Popup({message, reloadGame, buttonText}) {
     return (
         <div className="popup">

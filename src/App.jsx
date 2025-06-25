@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './components/line.css';
+import './styles/game.css';
 import Line from "./components/Line.jsx";
 import { fetchWord, renderTitle, handleKey } from './utils.jsx';
 import {MAX_GUESSES, TRY_AGAIN_MESSAGE, colors, TITLE, Key} from './constants.js';

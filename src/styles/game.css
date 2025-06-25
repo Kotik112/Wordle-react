@@ -1,0 +1,30 @@
+.game {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    padding: 100px;
+
+    background-image: url('/wordle-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 10px;
+}
+
+.game-title {
+    margin-top: -30px;
+    margin-bottom: 95px;
+    font-family: 'Comic Sans MS', cursive;
+    padding: 2px;
+    letter-spacing: 6px;
+    font-size: 34px;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px grey;
+    font-weight: bold;
+    text-shadow: 3px 4px 6px rgba(0,0,0,1);
+}

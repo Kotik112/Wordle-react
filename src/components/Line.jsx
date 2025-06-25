@@ -1,7 +1,6 @@
 
-import './line.css';
+import '../styles/line.css';
 import Tile from "./Tile.jsx";
-import './line.css'
 
 export default function Line( { guess, isFinal, solution } ) {
     const MAX_LEN = 5;

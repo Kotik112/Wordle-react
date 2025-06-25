@@ -1,4 +1,4 @@
-import './line.css'
+import '../styles/tile.css'
 
 export default function Tile({ letter, className }) {
 
