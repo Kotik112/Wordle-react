@@ -17,7 +17,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     exclude: [...configDefaults.exclude, 'e2e/**'],
-    setupFiles: ['./vitest.setup.js'], // Optional: for global setup
+    setupFiles: ['./vitest.setup.js'],
+    coverage: {
+      reporter: ['text', 'lcov'],
+      exclude: ['node_modules/', 'tests/helpers/'],
+    },
   },
 })
 

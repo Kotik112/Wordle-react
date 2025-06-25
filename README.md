@@ -74,37 +74,6 @@ npm run dev
 ```
 This will launch the app at: `http://localhost:5173`
 
-
-## ⚙️ CI/CD with GitHub Actions (Markdown)
-
-### CI/CD with GitHub Actions
-
-Every push to the `master` branch triggers a GitHub Actions workflow that:
-
-1. Installs dependencies
-2. Builds the application using `VITE_API_URL`
-3. Uploads the compiled site (`dist/`) to an AWS S3 bucket
-
-#### Workflow File
-
-See `.github/workflows/CI-CD.yaml` for the full configuration.
-
-
-### Required Secrets
-
-To enable deployment, the following GitHub repository secrets must be configured:
-
-| Secret Name              | Description                                             |
-|--------------------------|---------------------------------------------------------|
-| `AWS_ACCESS_KEY_ID`      | AWS IAM access key with permission to access the S3 bucket |
-| `AWS_SECRET_ACCESS_KEY`  | Corresponding secret access key                         |
-| `AWS_S3_BUCKET`          | Name of the S3 bucket for deployment                    |
-| `VITE_API_URL`           | Full API URL used in the production build              |
-
-You can add these secrets in your repository settings under:  
-**Settings → Secrets and variables → Actions → New repository secret**
-
-
 ## License
 
 This project is licensed under the [MIT License](https://mit-license.org/).
